@@ -1,17 +1,8 @@
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
 import { app, BrowserWindow } from 'electron';
-import { options } from "./option";
+import { createWindow } from "./createWindow";
 
-const createWindow = () => {
-
-  const win = new BrowserWindow(options);
-
-  win.loadURL('http://localhost:9999');
-
-}
-
-app.whenReady()
-.then(() => {
+app.whenReady().then(() => {
 
   installExtension(REACT_DEVELOPER_TOOLS)
     .then((name) => console.log(`Added Extension:  ${name}`))
@@ -19,8 +10,8 @@ app.whenReady()
 
   createWindow();
 
-  app.on('activate', () => BrowserWindow.getAllWindows().length === 0 && createWindow());
+  app.on('activate', () => (BrowserWindow.getAllWindows().length === 0) && createWindow());
 
-  app.on('window-all-closed', () => process.platform !== 'darwin' && app.quit());
-  
+  app.on('window-all-closed', () => (process.platform !== 'darwin') && app.quit());
+
 });

@@ -1,17 +1,14 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layouts from "./layouts/layouts";
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import { Layout } from './compopnents/layouts/layout';
 
-function App () {
+export const App = () => {
 
-  return <BrowserRouter>
+  return <HashRouter>
     <Routes>
-      <Route element={<Layouts/>}>
-        <Route path="/" element={<>vvvvv</>}/>
-
+      <Route element={<Layout/>}>
+        <Route path="/" element={<div>ddsadsds</div>}/>
       </Route>
     </Routes>
-  </BrowserRouter>
+  </HashRouter>
 
 }
-
-export default App;
