@@ -1,7 +1,68 @@
+@font-face {
+    font-family: "Pixelated MS Sans Serif";
+    src: url("./font/ms_sans_serif_bold.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+  
+
+
 * {
 
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Pixelated MS Sans Serif",Arial;
     
+}
+
+body {
+
+    background-color: #c0c0c0;
+    
+}
+
+.title-bar {
+
+    display: flex;
+    align-items: center;
+    padding: 3px 2px 3px 3px;
+    justify-content: space-between;
+    background: linear-gradient(90deg,navy,#1084d0);
+
+}
+
+.button {
+
+    border: none;
+    background: silver;
+    -webkit-app-region: no-drag;
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+
+}
+
+.container {
+
+    display: flex;
+    align-items: center;
+
+}
+
+a{
+
+    display: block;
+    text-decoration: none;
+
+}
+
+.dropdown-menu{
+
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+
+}
+
+.hidden {
+
+    display: none;
+
 }
