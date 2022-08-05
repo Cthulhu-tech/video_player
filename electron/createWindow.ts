@@ -1,4 +1,5 @@
-import { app, BrowserWindow, ipcMain, Notification } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
+const electron = require('electron');
 import * as path from 'path';
 
 export const createWindow = () => {
@@ -10,7 +11,7 @@ export const createWindow = () => {
     minWidth: 600,
     minHeight: 600,
     resizable: true,
-    backgroundColor: '#312450',
+    backgroundColor: 'black',
     webPreferences: {
 
       nodeIntegration: false,
@@ -44,7 +45,23 @@ export const createWindow = () => {
   }
 
   ipcMain.on('close', (evt, arg) => app.quit());
+  ipcMain.on('min', (evt, arg) => win.minimize());
+  ipcMain.on('max', (evt, arg) => win.isMaximized() ? win.unmaximize() : win.maximize());
 
+  ipcMain.on('openFile', (evt, arg) => {
+
+    electron.dialog.showOpenDialog({
+      properties:['multiSelections'],
+      filters: [{name: 'Movies', extensions: ['mkv', 'avi', 'mp4']}]
+    }).then((result) => {
+
+      win.webContents.send("dataFile", result.filePaths);
+
+    }).catch((err) => {
+      console.log(err)
+    })
+
+  });
   
 
 }
