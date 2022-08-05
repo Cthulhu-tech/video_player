@@ -1,7 +1,16 @@
+import { ElectronWindow } from "../../interface/electronInterface";
+
+declare const window: ElectronWindow;
+
 export const Header = () => {
 
-    return <header className="header">
+    const close = () => window.electron.notificationApi.closeAplication();
+
+    return <>
+        <header className="header">
         
-    </header>
+        </header>
+    <button onClick={close}>click</button>
+    </>
 
 }
