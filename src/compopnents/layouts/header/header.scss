@@ -1,0 +1,49 @@
+@import '../../../style/color.scss';
+
+.header {
+
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    padding: 3px 2px 3px 3px;
+
+
+}
+
+.header__manage{
+
+    display: flex;
+
+}
+
+.header__button{
+
+    width: 16px;
+    height: 14px;
+    justify-content: center;
+
+}
+
+.header__drag{
+
+    width: 100%;
+    height: 20px;
+    -webkit-app-region: drag;
+    -webkit-user-select: none;
+
+}
+
+.close{
+
+    margin-left: 2px;
+
+}
+
+.header__paragraph_m{
+
+    color: $white;
+    font-size: 13px;
+    font-weight: 400;
+
+}
