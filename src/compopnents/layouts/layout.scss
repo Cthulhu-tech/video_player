@@ -1,9 +1,9 @@
-.header {
+main {
 
-    width: 100%;
-    min-height: 50px;
-    -webkit-app-region: drag;
-    -webkit-user-select: none;
-    background-color: black;
+    margin: 5px;
+    padding: 5px;
+    width: calc(100% - 10px);
+    height: calc(100vh - 160px);
+    box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
 
 }
