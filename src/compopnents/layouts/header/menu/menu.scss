@@ -1,0 +1,83 @@
+@import '../../../../style/color.scss';
+
+.header__menu{
+
+    width: 100%;
+    height: 80px;
+    box-shadow: inset 0px -1px #eee, inset 0px -2px rgb(0, 0, 0);
+
+}
+
+.header__menu li{
+
+    position: relative;
+
+}
+
+.sub-dropdown{
+
+    left: 0;
+    z-index: 10;
+    display: none;
+    min-width: 200px;
+    position: absolute;
+    list-style-type: none;
+
+}
+
+.dropdown > li:hover .sub-dropdown{
+
+    display: block;
+
+}
+
+
+.dropdown__link {
+
+    margin: 0 5px;
+    color: black;
+    font-size: 11px;
+    cursor: pointer;
+    font-weight: 200;
+    list-style-type: none;
+
+    &:hover{
+
+        color: gray;
+
+    }
+
+}
+
+.sub-sub-dropdown{
+
+    top: 0;
+    left: 100%;
+    z-index: 10;
+    display: none;
+    min-width: 200px;
+    position: absolute;
+    list-style-type: none;
+
+}
+
+.sub-dropdown__link:hover .sub-sub-dropdown{
+
+    display: block;
+
+}
+
+.link{
+
+    color: black;
+    padding: 5px 20px;
+    background-color: $drop;
+
+    &:hover{
+
+        color: #eee;
+        background-color: gray;
+
+    }
+
+}
