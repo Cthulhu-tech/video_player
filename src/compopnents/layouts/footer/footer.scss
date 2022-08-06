@@ -1,6 +1,83 @@
 .footer {
 
     width: 100%;
+    display: flex;
     min-height: 90px;
+    align-items: flex-start;
+
+}
+
+.footer__button-container{
+    
+    width: 180px;
+    display: flex;
+    padding: 0 20px;
+    min-height: 30px;
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: inset -1px 0 grey, inset -2px 0 #dfdfdf;
+
+}
+
+.footer__button{
+
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    background-color: #808080;
+
+}
+
+.play{
+
+    clip-path: polygon(0 0, 0% 100%, 100% 50%);
+
+}
+
+.stop{
+
+    clip-path: polygon(0% 0%, 0% 100%, 35% 100%, 35% 0, 65% 0, 65% 100%, 32% 100%, 36% 100%, 100% 100%, 100% 0%);
+
+}
+
+.next {
+
+    clip-path: polygon(0% 30%, 0% 10%, 60% 50%, 60% 50%, 60% 50%, 50% 10%, 100% 50%, 50% 90%, 50% 0%, 60% 50%, 0% 90%, 0% 40%);
+
+}
+
+.prev {
+
+    clip-path: polygon(50% 10%, 50% 50%, 100% 10%, 100% 90%, 50% 50%, 50% 90%, 0 50%);
+
+}
+
+.first {
+
+    opacity: 0.4;
+    background: url("../../../assets/player/firstPage.svg");
+
+}
+
+.right {
+
+    transform: rotate(180deg);
+
+}
+
+.button-player{
+
+    width: 28px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover{
+        
+        background: white;
+        box-shadow: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px #808080;
+
+    }
 
 }

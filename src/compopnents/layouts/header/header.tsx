@@ -32,7 +32,7 @@ export const Header = () => {
         <section className="header__drag title-bar">
             <div className="container">
                 <img src={icon} alt="ico" />
-                <p className="header__paragraph_m">Media Player Classic</p>
+                <p className="header__paragraph_m">Player Classic</p>
             </div>
             <div className="header__manage">
                 <button className="header__button container button"onClick={min}>
