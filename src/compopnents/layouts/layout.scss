@@ -2,7 +2,11 @@ main {
 
     margin: 5px;
     padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: calc(100% - 10px);
+    background-color: black;
     height: calc(100vh - 160px);
     box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
 
