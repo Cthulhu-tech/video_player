@@ -1,4 +1,4 @@
-import { playVideoState } from "../../redux/store/videoState";
+import { audioVideoState, playVideoState, videoPosition } from "../../redux/store/videoState";
 import { ReduxStore } from "../../interface/reduxInterface";
 import { setVideoPath } from "../../redux/store/video";
 import { useEffect, useState } from "react";
@@ -8,70 +8,87 @@ import { useDispatch } from "react-redux";
 export const useVideoTrack = () => {
 
     const dispatch = useDispatch();
-    const video = useSelector((store:ReduxStore) => store.File);
+    const _video = useSelector((store:ReduxStore) => store.File);
     const videoState = useSelector((store:ReduxStore) => store.VideoStore);
 
+    const [_down, stateDown] = useState(false);
     const [position, setPosition] = useState(0);
+    const [_pause, statePause] = useState(true);
 
-    useEffect(() => { },[position, video]);
+    useEffect(() => {},[position, _video, _down, _pause]);
 
     const play = () => {
+        statePause(false);
+        !videoState.play && _video.file.length > 0 && dispatch(playVideoState(true));
+    };
+    const pause = () => {
+        statePause(true);
+        videoState.play && _video.file.length > 0 && dispatch(playVideoState(false));
+    };
+    
 
-        !videoState.play && dispatch(playVideoState(true));
+    const changeAudio = (event: React.ChangeEvent<HTMLInputElement>) => dispatch(audioVideoState(+event.target.value));
+    const cahngeVideo = (event: React.ChangeEvent<HTMLInputElement>) => videoState.videoLength > 0 && dispatch(videoPosition({change: _down, position: +event.target.value}));
+
+    const up = () => {
+
+        !_pause && !videoState.play && _video.file.length > 0 && dispatch(playVideoState(true));
+        stateDown(false);
 
     }
 
-    const pause = () => {
+    const down = () => {
 
-        videoState.play && dispatch(playVideoState(false));
-
+        videoState.play && _video.file.length > 0 && dispatch(playVideoState(false))
+        stateDown(true);
+    
     }
 
     const first = () => {
-
+        pause();
         setPosition(0);
-        dispatch(setVideoPath("file:///" + video.file[0]));
+        dispatch(setVideoPath("file:///" + _video.file[0]));
 
     }
     const last = () => {
-
-        setPosition(video.file.length - 1);
-        dispatch(setVideoPath("file:///" + video.file[video.file.length - 1]));
+        pause();
+        setPosition(_video.file.length - 1);
+        dispatch(setVideoPath("file:///" + _video.file[_video.file.length - 1]));
 
     }
 
     const next = () => {
-
-        if(position < video.file.length - 1 && position >= 0){
+        pause();
+        if(position < _video.file.length - 1 && position >= 0){
 
             setPosition(position + 1);
-            dispatch(setVideoPath("file:///" + video.file[position + 1]));
+            dispatch(setVideoPath("file:///" + _video.file[position + 1]));
 
         }else{
             
             setPosition(0);
-            dispatch(setVideoPath("file:///" + video.file[0]));
+            dispatch(setVideoPath("file:///" + _video.file[0]));
 
         }
 
     }
 
     const prev = () => {
-
-        if(position <= video.file.length - 1 && position > 0){
+        pause();
+        if(position <= _video.file.length - 1 && position > 0){
 
             setPosition(position - 1);
-            dispatch(setVideoPath("file:///" + video.file[position - 1]));
+            dispatch(setVideoPath("file:///" + _video.file[position - 1]));
 
         }else{
             
-            setPosition(video.file.length - 1);
-            dispatch(setVideoPath("file:///" + video.file[video.file.length - 1]));
+            setPosition(_video.file.length - 1);
+            dispatch(setVideoPath("file:///" + _video.file[_video.file.length - 1]));
 
         }
 
     }
 
-    return {next, prev, first, last, play, pause};
+    return {next, prev, first, last, play, pause, changeAudio, cahngeVideo, down, up};
 
 }
