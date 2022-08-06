@@ -20,8 +20,15 @@ export type VideoState = {
     play: boolean;
     speed: number;
     audio: number;
+    videoLength: number;
+    videoPosition: videoPositionType;
 
 }
+
+export type videoPositionType = {
+    change: boolean;
+    position: number;
+};
 
 export type ReduxStore = {
 
