@@ -10,7 +10,6 @@ const setFile = 'setFile';
 const updateFile = 'updateFile';
 
 export const FileStore = (state = defaultState, action:IAction<string, string[][]>) => {
-
     switch (action.type){
         case setFile: 
         return {file: Array.from(new Set([...state.file, ...(action.payload as string[][]).flat()]))}

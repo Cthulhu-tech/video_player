@@ -1,10 +1,10 @@
 import { combineReducers, createStore } from "redux";
+import { VideoStore } from "./store/video";
 import { FileStore } from "./store/file";
 
 export const rootReducer = combineReducers({
     File: FileStore,
+    Video: VideoStore
 });
-
-export type AppDispatch = typeof store.dispatch
 
 export const store = createStore(rootReducer);
