@@ -3,15 +3,23 @@
     width: 100%;
     display: flex;
     min-height: 90px;
+    flex-direction: column;
     align-items: flex-start;
 
 }
 
 .footer__button-container{
-    
-    width: 180px;
+
     display: flex;
+
+}
+
+.sub-footer__button-container{
+    
+    display: flex;
+    margin: 10px 0;
     padding: 0 20px;
+    min-width: 40px;
     min-height: 30px;
     align-items: center;
     justify-content: space-evenly;
@@ -30,6 +38,8 @@
 
 .play{
 
+    width: 18px;
+    height: 18px;
     clip-path: polygon(0 0, 0% 100%, 100% 50%);
 
 }
@@ -54,7 +64,6 @@
 
 .first {
 
-    opacity: 0.4;
     background: url("../../../assets/player/firstPage.svg");
 
 }
@@ -70,14 +79,111 @@
     width: 28px;
     height: 24px;
     display: flex;
+    transition: 0.1s;
     align-items: center;
     justify-content: center;
 
+}
+
+.active-button{
+
+    background-color: black;
+    
+
+}
+
+.footer__control{
+
+    margin: 5px;
+    height: 10px;
+    width: calc(100% - 10px);
+    -webkit-appearance: none;
+    background-color: whitesmoke;
+    box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+
+    &::-webkit-slider-thumb {
+
+        width: 16px;
+        height: 22px;
+        background-color: gray;
+        -webkit-appearance: none;
+        box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px grey, inset 2px 2px #fff;
+        clip-path: polygon(0% 0%, 0% 100%, 35% 100%, 35% 25%, 70% 26%, 70% 75%, 35% 75%, 35% 100%, 100% 100%, 100% 0%);
+
+    }
+
+}
+
+.audio-slider-container{
+
+    width: 200px;
+    display: flex;
+
+}
+
+.diactive{
+
+    opacity: 0.35;
+
+}
+
+.active {
+
+    background-color: black;
+
+}
+
+.active-hover {
+
+    cursor: pointer;
+
     &:hover{
         
-        background: white;
+        background-color: whitesmoke;
         box-shadow: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px #808080;
 
     }
+
+}
+
+.button-player .active-button:hover{
+
+    background-color: red;
+
+}
+
+.active-button{
+
+    background-color: whitesmoke;
+    box-shadow: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px #808080;
+
+}
+
+.audio-range{
+
+    width: 80%;
+    height: 30px;
+    margin-bottom: 10px;
+    background: transparent;
+    -webkit-appearance: none;
+
+    &::-webkit-slider-runnable-track {
+
+        width: 100%;
+        height: 100%;
+        background-color: silver;
+        clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+
+    }
+
+}
+
+.audio-range-shadow{
+
+    display: flex;    
+    margin-left: 5px;
+    align-items: flex-end;
+    justify-content: center;
+    background-color: silver;
 
 }
