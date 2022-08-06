@@ -15,9 +15,18 @@ export type VideoPath = {
 
 }
 
+export type VideoState = {
+
+    play: boolean;
+    speed: number;
+    audio: number;
+
+}
+
 export type ReduxStore = {
 
     File: FileLoader;
-    Video: VideoPath
+    Video: VideoPath;
+    VideoStore: VideoState;
 
 }
