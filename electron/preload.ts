@@ -28,12 +28,20 @@ contextBridge.exposeInMainWorld('electron', {
 
     },
 
-    receive: (channel:string, fn:(data:string[]) => void) => {
+    addToPool() {
 
+      ipcRenderer.send('addToPool');
+
+    },
+
+    receive: (channel:string, fn:(data:string[]) => void) => {
       switch (channel) {
         case "dataFile":
           ipcRenderer.on(channel, (event, ...args) => fn(args));
-        break;
+          break;
+        case "dataPool":
+          ipcRenderer.on(channel, (event, ...args) => fn(args));
+          break;
       }
 
     }

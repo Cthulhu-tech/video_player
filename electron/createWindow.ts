@@ -13,7 +13,8 @@ export const createWindow = () => {
     resizable: true,
     backgroundColor: 'black',
     webPreferences: {
-
+      
+      webSecurity: false,
       nodeIntegration: false,
       contextIsolation: true,
       preload: path.join(__dirname, 'preload.js')
@@ -51,14 +52,33 @@ export const createWindow = () => {
   ipcMain.on('openFile', (evt, arg) => {
 
     electron.dialog.showOpenDialog({
-      properties:['multiSelections'],
+      properties:['openFile'],
       filters: [{name: 'Movies', extensions: ['mkv', 'avi', 'mp4']}]
     }).then((result) => {
 
       win.webContents.send("dataFile", result.filePaths);
 
     }).catch((err) => {
-      console.log(err)
+
+      console.log(err);
+
+    })
+
+  });
+
+  ipcMain.on('addToPool', (evt, arg) => {
+
+    electron.dialog.showOpenDialog({
+      properties:['multiSelections'],
+      filters: [{name: 'Movies', extensions: ['mkv', 'avi', 'mp4']}]
+    }).then((result) => {
+
+      win.webContents.send("dataPool", result.filePaths);
+
+    }).catch((err) => {
+
+      console.log(err);
+
     })
 
   });
