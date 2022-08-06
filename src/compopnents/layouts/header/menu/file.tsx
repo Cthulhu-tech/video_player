@@ -1,7 +1,8 @@
 import { setFileStore, updateFileStore } from "../../../../redux/store/file";
 import { ElectronWindow } from "../../../../interface/electronInterface";
-import { useDispatch } from "react-redux";
+import { playVideoState } from "../../../../redux/store/videoState";
 import { setVideoPath } from "../../../../redux/store/video";
+import { useDispatch } from "react-redux";
 
 declare const window: ElectronWindow;
 
@@ -9,12 +10,22 @@ export const File = () => {
 
     const dispatch = useDispatch();
 
-    const openFile = () => window.electron.api.openFile();
-    const AddToPool = () => window.electron.api.addToPool();
+    const openFile = () => {
+
+        window.electron.api.openFile();
+        dispatch(playVideoState(false));
+
+    };
+    const AddToPool = () =>{
+
+        window.electron.api.addToPool();
+        dispatch(playVideoState(false));
+
+    };
     const openUrl = () => {}
 
     window.electron.api.receive("dataFile", (data:string[]) => {
-
+        
         dispatch(updateFileStore(data));
         dispatch(setVideoPath("file:///" + data[0]));
 
