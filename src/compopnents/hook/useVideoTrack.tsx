@@ -1,3 +1,4 @@
+import { playVideoState } from "../../redux/store/videoState";
 import { ReduxStore } from "../../interface/reduxInterface";
 import { setVideoPath } from "../../redux/store/video";
 import { useEffect, useState } from "react";
@@ -8,10 +9,36 @@ export const useVideoTrack = () => {
 
     const dispatch = useDispatch();
     const video = useSelector((store:ReduxStore) => store.File);
+    const videoState = useSelector((store:ReduxStore) => store.VideoStore);
 
     const [position, setPosition] = useState(0);
 
     useEffect(() => { },[position, video]);
+
+    const play = () => {
+
+        !videoState.play && dispatch(playVideoState(true));
+
+    }
+
+    const pause = () => {
+
+        videoState.play && dispatch(playVideoState(false));
+
+    }
+
+    const first = () => {
+
+        setPosition(0);
+        dispatch(setVideoPath("file:///" + video.file[0]));
+
+    }
+    const last = () => {
+
+        setPosition(video.file.length - 1);
+        dispatch(setVideoPath("file:///" + video.file[video.file.length - 1]));
+
+    }
 
     const next = () => {
 
@@ -45,6 +72,6 @@ export const useVideoTrack = () => {
 
     }
 
-    return {next, prev}
+    return {next, prev, first, last, play, pause};
 
 }
