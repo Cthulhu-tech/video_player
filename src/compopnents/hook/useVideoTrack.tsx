@@ -1,5 +1,6 @@
 import { audioVideoState, playVideoState, videoPosition } from "../../redux/store/videoState";
 import { ReduxStore } from "../../interface/reduxInterface";
+import { useLocation, useNavigate } from "react-router-dom";
 import { setVideoPath } from "../../redux/store/video";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -8,6 +9,8 @@ import { useDispatch } from "react-redux";
 export const useVideoTrack = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { pathname } = useLocation();
     const _video = useSelector((store:ReduxStore) => store.File);
     const videoState = useSelector((store:ReduxStore) => store.VideoStore);
 
@@ -19,8 +22,6 @@ export const useVideoTrack = () => {
     useEffect(() => {},[position, _video, _down, _pause, _audio]);
 
     const audioState = () => {
-
-        console.log(_audio)
 
         if(videoState.audio > 0){
 
@@ -38,14 +39,16 @@ export const useVideoTrack = () => {
 
         }
 
-        
-
     }
 
     const play = () => {
+
+        if(pathname !== '/') navigate("/", { replace: true });
+
         statePause(false);
         !videoState.play && _video.file.length > 0 && dispatch(playVideoState(true));
     };
+    
     const pause = () => {
         statePause(true);
         videoState.play && _video.file.length > 0 && dispatch(playVideoState(false));
@@ -53,7 +56,12 @@ export const useVideoTrack = () => {
     
 
     const changeAudio = (event: React.ChangeEvent<HTMLInputElement>) => dispatch(audioVideoState(+event.target.value));
-    const cahngeVideo = (event: React.ChangeEvent<HTMLInputElement>) => videoState.videoLength > 0 && dispatch(videoPosition({change: _down, position: +event.target.value}));
+    const cahngeVideo = (event: React.ChangeEvent<HTMLInputElement>) => {
+        
+        if(+event.target.value === videoState.videoLength) pause();
+        videoState.videoLength > 0 && dispatch(videoPosition({change: _down, position: +event.target.value}));
+
+    }
 
     const up = () => {
 
