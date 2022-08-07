@@ -11,11 +11,36 @@ export const useVideoTrack = () => {
     const _video = useSelector((store:ReduxStore) => store.File);
     const videoState = useSelector((store:ReduxStore) => store.VideoStore);
 
+    const [_audio, setAudio] = useState(0);
     const [_down, stateDown] = useState(false);
     const [position, setPosition] = useState(0);
     const [_pause, statePause] = useState(true);
 
-    useEffect(() => {},[position, _video, _down, _pause]);
+    useEffect(() => {},[position, _video, _down, _pause, _audio]);
+
+    const audioState = () => {
+
+        console.log(_audio)
+
+        if(videoState.audio > 0){
+
+            setAudio(videoState.audio);
+
+            dispatch(audioVideoState(0));
+
+        }else if(_audio === 0){
+
+            dispatch(audioVideoState(1));
+
+        }else{
+
+            dispatch(audioVideoState(_audio));
+
+        }
+
+        
+
+    }
 
     const play = () => {
         statePause(false);
@@ -47,13 +72,13 @@ export const useVideoTrack = () => {
     const first = () => {
         pause();
         setPosition(0);
-        dispatch(setVideoPath("file:///" + _video.file[0]));
+        dispatch(setVideoPath(_video.file[0]));
 
     }
     const last = () => {
         pause();
         setPosition(_video.file.length - 1);
-        dispatch(setVideoPath("file:///" + _video.file[_video.file.length - 1]));
+        dispatch(setVideoPath(_video.file[_video.file.length - 1]));
 
     }
 
@@ -62,12 +87,12 @@ export const useVideoTrack = () => {
         if(position < _video.file.length - 1 && position >= 0){
 
             setPosition(position + 1);
-            dispatch(setVideoPath("file:///" + _video.file[position + 1]));
+            dispatch(setVideoPath(_video.file[position + 1]));
 
         }else{
             
             setPosition(0);
-            dispatch(setVideoPath("file:///" + _video.file[0]));
+            dispatch(setVideoPath(_video.file[0]));
 
         }
 
@@ -78,17 +103,17 @@ export const useVideoTrack = () => {
         if(position <= _video.file.length - 1 && position > 0){
 
             setPosition(position - 1);
-            dispatch(setVideoPath("file:///" + _video.file[position - 1]));
+            dispatch(setVideoPath(_video.file[position - 1]));
 
         }else{
             
             setPosition(_video.file.length - 1);
-            dispatch(setVideoPath("file:///" + _video.file[_video.file.length - 1]));
+            dispatch(setVideoPath(_video.file[_video.file.length - 1]));
 
         }
 
     }
 
-    return {next, prev, first, last, play, pause, changeAudio, cahngeVideo, down, up};
+    return {next, prev, first, last, play, pause, changeAudio, cahngeVideo, down, up, audioState};
 
 }
