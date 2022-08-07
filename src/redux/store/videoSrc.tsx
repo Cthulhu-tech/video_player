@@ -6,9 +6,9 @@ const defaultState:VideoPath = {
 
 }
 
-const setVideo = 'setVideo';
+const setVideo = 'setVideoSrc';
 
-export const VideoStore = (state = defaultState, action:IAction<string, string>) => {
+export const VideoStoreSrc = (state = defaultState, action:IAction<string, string>) => {
 
     switch (action.type){
         case setVideo:
@@ -18,4 +18,4 @@ export const VideoStore = (state = defaultState, action:IAction<string, string>)
     }
 }
 
-export const setVideoPath = (payload: string | null) => ({ type: setVideo, payload });
+export const setVideoSrc = (payload: string | null) => ({ type: setVideo, payload });
