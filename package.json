@@ -1,8 +1,8 @@
 {
-  "name": "video_player",
+  "name": "player",
   "version": "1.0.0",
   "author": "Cthulhu-tech",
-  "description": "video player",
+  "description": "Player Classic",
   "homepage": ".",
   "main": "build/electron/main.js",
   "private": true,
@@ -23,6 +23,7 @@
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-ticker": "^1.3.2",
     "redux": "^4.2.0",
     "sass": "^1.54.3",
     "typescript": "^4.7.3",
@@ -38,12 +39,26 @@
     "eject": "react-scripts eject"
   },
   "build": {
+    "productName": "Player Classic",
+    "copyright": "Copyright © 2022 Cthulhu-tech",
     "extends": null,
     "files": [
       "build/**/*"
     ],
-    "directories": {
-      "buildResources": "assets"
+    "appId": "player",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "./icon.png",
+      "requestedExecutionLevel": "requireAdministrator"
+    },
+    "nsis": {
+      "installerIcon": "./icon.png",
+      "uninstallerIcon": "./icon.png",
+      "uninstallDisplayName": "Player Classic",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
     }
   },
   "eslintConfig": {
