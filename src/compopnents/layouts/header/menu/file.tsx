@@ -1,10 +1,9 @@
 import { setFileStore, updateFileStore } from "../../../../redux/store/file";
 import { ElectronWindow } from "../../../../interface/electronInterface";
 import { playVideoState } from "../../../../redux/store/videoState";
+// import { setVideoSrc } from "../../../../redux/store/videoSrc";
 import { setVideoPath } from "../../../../redux/store/video";
 import { useDispatch } from "react-redux";
-import { setVideoSrc } from "../../../../redux/store/videoSrc";
-import { NavLink } from 'react-router-dom';
 
 declare const window: ElectronWindow;
 
@@ -16,22 +15,16 @@ export const File = () => {
 
         window.electron.api.openFile();
         dispatch(playVideoState(false));
-        dispatch(setVideoSrc(''));
 
     };
     const AddToPool = () =>{
 
         window.electron.api.addToPool();
         dispatch(playVideoState(false));
-        dispatch(setVideoSrc(''));
 
     };
-    const openUrl = () => {
-
-        dispatch(setVideoSrc(''));
-        dispatch(playVideoState(false));
-
-    }
+    
+    // const openUrl = () => dispatch(playVideoState(false));
 
     window.electron.api.receive("dataFile", (data:string[]) => {
 
@@ -53,11 +46,11 @@ export const File = () => {
         <ul className="sub-dropdown dropdown-menu">
             <li className="sub-dropdown__link link" onClick={openFile}>Open</li>
             <li className="sub-dropdown__link link" onClick={AddToPool}>Add to pool...</li>
-            <li className="sub-dropdown__link link" onClick={openUrl}>
+            {/* <li className="sub-dropdown__link link" onClick={openUrl}>
                 <NavLink to="link">
                     Open URL- link...
                 </NavLink>
-            </li>
+            </li> */}
         </ul>
     </li>
 

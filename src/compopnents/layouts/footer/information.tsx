@@ -10,10 +10,11 @@ export const Information = () => {
     const videoState = useSelector((store:ReduxStore) => store.VideoStore);
 
     const getPath = (store:string | string[]) => {
+
         if(Array.isArray(store))
-            return decodeURI(store[0].replace(/^.*(\\|\/|\:)/, ''));
+            return !!store[0] ? decodeURI(store[0].replace(/^.*(\\|\/|\:)/, '')) : '';
         else
-            return decodeURI(store.replace(/^.*(\\|\/|\:)/, ''));
+            return !!store ? decodeURI(store.replace(/^.*(\\|\/|\:)/, '')) : '';
     }
 
     const store = useSelector((store:ReduxStore) => store.Video.video);

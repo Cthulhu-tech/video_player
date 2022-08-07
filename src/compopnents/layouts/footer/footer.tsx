@@ -1,3 +1,4 @@
+import { videoPosition } from '../../../redux/store/videoState';
 import { ReduxStore } from '../../../interface/reduxInterface';
 import { useVideoTrack } from '../../hook/useVideoTrack';
 import { useSelector } from 'react-redux';
@@ -7,15 +8,27 @@ import './footer.scss';
 import speak from '../../../assets/player/speak.png';
 import muted from '../../../assets/player/muted.png';
 import { Information } from './information';
+import { useDispatch } from 'react-redux';
 
 export const Footer = () => {
 
+    const dispatch = useDispatch();
     const _video = useSelector((store:ReduxStore) => store.File);
     const videoState = useSelector((store:ReduxStore) => store.VideoStore);
 
     const {prev, next, first, last, play, pause, changeAudio, cahngeVideo, down, up, audioState} = useVideoTrack();
 
     useEffect(() => {},[videoState]);
+    useEffect(() => { 
+
+        if(videoState.videoPosition.position === videoState.videoLength){ 
+
+            pause();
+            videoState.videoLength > 0 && dispatch(videoPosition({change: false, position: 0}));
+
+        }
+    
+    },[videoState.videoPosition])
 
     return <footer className="footer">
             <input className="footer__control" type="range" max={videoState.videoLength} value={videoState.videoPosition.position} onMouseUp={up} onMouseDown={down} onChange={cahngeVideo}/>

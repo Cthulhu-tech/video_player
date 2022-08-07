@@ -1,16 +1,13 @@
 import { speedVideoState } from "../../../../redux/store/videoState";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
 
 export const Player = () => {
 
     const dispatch = useDispatch();
-    const [active, stateActive] = useState();
 
     return <li className="dropdown__link">
         Play
         <ul className="sub-dropdown dropdown-menu">
-            <li className="sub-dropdown__link link">Play or Stop</li>
             <li className="sub-dropdown__link link">
                 Speed
                 <ul className="sub-sub-dropdown dropdown-menu">

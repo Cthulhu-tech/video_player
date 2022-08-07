@@ -25,6 +25,20 @@
 
 }
 
+.sub-dropdown__link > a {
+
+    color: black;
+    background-color: $drop;
+
+}
+
+.sub-dropdown__link:hover > a {
+
+    color: white;
+    background-color: gray;
+
+}
+
 .dropdown > li:hover .sub-dropdown{
 
     display: block;
