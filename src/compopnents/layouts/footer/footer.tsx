@@ -4,12 +4,16 @@ import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import './footer.scss';
 
+import speak from '../../../assets/player/speak.png';
+import muted from '../../../assets/player/muted.png';
+import { Information } from './information';
+
 export const Footer = () => {
 
     const _video = useSelector((store:ReduxStore) => store.File);
     const videoState = useSelector((store:ReduxStore) => store.VideoStore);
 
-    const {prev, next, first, last, play, pause, changeAudio, cahngeVideo, down, up} = useVideoTrack();
+    const {prev, next, first, last, play, pause, changeAudio, cahngeVideo, down, up, audioState} = useVideoTrack();
 
     useEffect(() => {},[videoState]);
 
@@ -39,17 +43,19 @@ export const Footer = () => {
                     <div className={_video.file.length > 1 ? "footer__button first right" : "footer__button first diactive right"}></div>
                 </div>
             </div>
-            <div className="sub-footer__button-container">
+            <div className="sub-footer__button-container last">
                 <div className={_video.file.length > 1 ? "button-player active-hover" : "button-player"}>
 
                 </div>
             </div>
             <div className="audio-slider-container">
-                <div className="audio-range-shadow">
-                    <input type="range" className="audio-range" step="0.01" min="0" max="1" value={videoState.audio} onChange={changeAudio}/>
-                </div>
+                <img src={videoState.audio > 0 ? speak : muted} alt="speak" className="audio-image" 
+                    onClick={audioState}
+                />
+                <input type="range" className="audio-range" step="0.01" min="0" max="1" value={videoState.audio} onChange={changeAudio}/>
             </div>
         </div>
+        <Information/>
     </footer>
 
 }

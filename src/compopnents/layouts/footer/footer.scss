@@ -11,11 +11,20 @@
 .footer__button-container{
 
     display: flex;
+    justify-content: space-around;
+    width: clamp(600px, 100%, 800px);
+
+}
+
+.last {
+
+    width: 140px !important;
 
 }
 
 .sub-footer__button-container{
     
+    width: 100%;
     display: flex;
     margin: 10px 0;
     padding: 0 20px;
@@ -114,13 +123,6 @@
 
 }
 
-.audio-slider-container{
-
-    width: 200px;
-    display: flex;
-
-}
-
 .diactive{
 
     opacity: 0.35;
@@ -159,31 +161,84 @@
 
 }
 
-.audio-range{
+.audio-slider-container{
 
-    width: 80%;
+    top: 6px;
     height: 30px;
-    margin-bottom: 10px;
-    background: transparent;
-    -webkit-appearance: none;
-
-    &::-webkit-slider-runnable-track {
-
-        width: 100%;
-        height: 100%;
-        background-color: silver;
-        clip-path: polygon(100% 0, 0% 100%, 100% 100%);
-
-    }
+    width: 100px;
+    margin: 0 5%;    
+    display: flex;
+    position: relative;
+    border-style: solid;
+    flex-direction: row;
+    align-items: flex-end;
+    border-width: 30px 100px 0 0;
+    justify-content: space-around;
+    border-color: transparent silver transparent transparent;
+    filter: drop-shadow(0 0 1px rgb(0, 0, 0, 0.5)) drop-shadow(0 2px 0 white);
 
 }
 
-.audio-range-shadow{
+.audio-range{
 
-    display: flex;    
-    margin-left: 5px;
-    align-items: flex-end;
-    justify-content: center;
-    background-color: silver;
+    left: 5px;
+    width: 95px;
+    bottom: -5px;
+    appearance: none;
+    position: absolute;
+    -webkit-appearance: none;
+    background-color: transparent;
+
+}
+
+.audio-range::-webkit-slider-thumb {
+
+    width: 15px;
+    height: 35px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: gray;
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px grey, inset 2px 2px #fff;
+
+}
+
+.video-info-container{
+
+    width: 99%;
+    height: 34px;
+    display: flex;
+    margin: 5px auto;
+    align-items: center;
+    background-color: black;
+    justify-content: space-between;
+    box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+
+}
+
+.audio-image{
+
+    right: 10px;
+    margin-left: 10px;
+    position: absolute;
+
+}
+
+.video-info-text{
+
+    width: 100%;
+    color: gray;
+    padding: 0 15px;
+    font-size: 12px;
+    font-weight: 100;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: clip;
+
+}
+
+.video-info-text-container {
+
+    width: 100%;
 
 }
