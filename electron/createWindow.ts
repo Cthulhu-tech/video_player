@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 const electron = require('electron');
 import * as path from 'path';
+const url = require('url');
 
 export const createWindow = () => {
 
@@ -20,10 +21,8 @@ export const createWindow = () => {
       preload: path.join(__dirname, 'preload.js')
 
     },
-
-    icon: path.join(__dirname, '../assets/icon.ico')
     
-  })
+  });
 
   if (app.isPackaged) win.loadURL(`file://${__dirname}/../index.html`);
   else {
@@ -53,8 +52,14 @@ export const createWindow = () => {
 
     electron.dialog.showOpenDialog({
       properties:['openFile'],
-      filters: [{name: 'Movies', extensions: ['mkv', 'avi', 'mp4']}]
+      filters: [{name: 'Movies', extensions: ['mkv', 'avi', 'mp4', 'mov', 'webm']}]
     }).then((result) => {
+
+      result.filePaths.forEach((item, i) => {
+
+        result.filePaths[i] = url.pathToFileURL(item).href;
+
+      });
 
       win.webContents.send("dataFile", result.filePaths);
 
@@ -73,6 +78,12 @@ export const createWindow = () => {
       filters: [{name: 'Movies', extensions: ['mkv', 'avi', 'mp4']}]
     }).then((result) => {
 
+      result.filePaths.forEach((item, i) => {
+
+        result.filePaths[i] = url.pathToFileURL(item).href;
+
+      });
+      
       win.webContents.send("dataPool", result.filePaths);
 
     }).catch((err) => {
