@@ -30,7 +30,7 @@ export const Video = (video: {src: string}) => {
             videoRef.current.playbackRate = videoState.speed;
 
         }
-
+        
     },[videoRef, videoState.audio, videoState.speed, videoState.videoLength, videoState.play, _video]);
 
     useEffect(() => {
