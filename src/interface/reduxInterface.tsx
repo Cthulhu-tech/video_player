@@ -35,5 +35,6 @@ export type ReduxStore = {
     File: FileLoader;
     Video: VideoPath;
     VideoStore: VideoState;
+    VideoLink: VideoPath;
 
 }
